@@ -71,7 +71,7 @@ img{
     text-decoration: none;
     outline: none;
     cursor: pointer;
-    color: var(--color_B_60) !important;
+    color: var(--color_B_60);
     width: auto;
     line-height: 1em;
     display: flex;
@@ -82,12 +82,11 @@ img{
     width: 16px; }
 
 .btn:hover{
-    color: var(--color_B) !important; }
+    color: var(--color_B) }
 
-.dual-button{
-    margin-top: 8px;
+.featured_work_button{
     display: flex;
-        gap: 16px; }
+        gap: 8px; }
 .page{
     width: 1280px;
     margin: 0 auto;
@@ -100,10 +99,21 @@ img{
     display: flex;
         flex-direction: column;
         gap: 20px; }
-.featured-works{
+
+.featured{
     display: flex;
         flex-direction: column;
-        gap: 40px; }
+        gap: 80px;
+}
+.featured_card{
+    display: flex;
+        flex-direction: column;
+        gap: 20px; }
+
+.featured_work_button{
+    display: flex;
+        gap: 20px; }
+
 /* Tab*/
 @media (max-width: 768px){
 .title{
