@@ -165,17 +165,15 @@ img{
         width: 100%;
         padding: 160px 16px;}}
 
-
-
-header.sticky_header{
+.sticky_header{
     background: var(--color_W);
     width: 1280px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px 0;
     display: flex;
         justify-content: space-between;
         align-items: center;
-    position: sticky;
+    position: fixed;
         top: 0;
     z-index: 999;}
 
