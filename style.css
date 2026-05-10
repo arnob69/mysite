@@ -72,11 +72,22 @@ img{
     width: auto;
     line-height: 1em;
     display: flex;
-        gap: 4px; }
+        gap: 4px;
+    transition: .35s ease;}
 
-.cta_button img{
-    height: 16px;
-    width: 16px; }
+.arrow_icon{
+    width: 18px;
+    height: 18px;
+    stroke: var(--color_B_60);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: .35s ease; }
+
+.cta_button:hover .arrow_icon{
+    stroke: var(--color_B); }
+
+
 
 .cta_button:hover{
     color: var(--color_B) }
