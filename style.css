@@ -16,7 +16,7 @@
         --color_0: light-dark(#0000, #fff0);
 		--color_B_60: light-dark(#00000099, #ffffffcc);
 		--color_B_80: light-dark(#000000cc, #ffffffcc); 
-        --color_W_60:light-dark( #ffffffcc ,#00000099 );;}
+        --color_W_60:light-dark( #ffffffcc ,#00000099 );}
 
 html{
     scrollbar-width: none; /* Firefox */
@@ -72,7 +72,7 @@ img{
     width: auto;
     line-height: 1em;
     display: flex;
-        gap: 4px;
+        gap: 0px;
     transition: .35s ease;}
 
 .arrow_icon{
@@ -93,18 +93,8 @@ img{
     color: var(--color_B) }
 
 .cta_button_alt{
-    margin: 0;
-    padding: 0;
-    background: var(--color_0);
-    border: none;
-    text-decoration: none;
-    outline: none;
-    cursor: pointer;
     color: var(--color_B_80);
-    width: auto;
-    line-height: 1em;
-    display: flex;
-        gap: 4px; }
+ }
 
 .cta_button_alt img{
     height: 16px;
