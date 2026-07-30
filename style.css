@@ -50,7 +50,7 @@ p, .txt, .big-txt, a, button, input, select, textarea,
     color: var(--color_B); }
 
 .subtitle{
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1.2em;
     font-weight: 400;
     color: var(--color_B); }
@@ -58,7 +58,7 @@ p, .txt, .big-txt, a, button, input, select, textarea,
 .big-txt{
     font-size: 18px;
     line-height: 1.4em;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: 0.2px;
     word-spacing: 0.8px;
     color: var(--color_B_80); }
@@ -139,7 +139,8 @@ p , .txt{
 
 .featured_work_button{
     display: flex;
-        gap: 16px; }
+        gap: 16px;
+        flex-wrap: wrap; }
 
 
 
@@ -306,11 +307,14 @@ p , .txt{
     content: "";
 }
 
-.faq_question .subtitle {
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--color_B);
+.faq_question .big-txt {
+    color: var(--color_B_60);
     transition: color .35s ease;
+}
+
+.faq_question:hover .big-txt,
+.faq_item[open] .faq_question .big-txt {
+    color: var(--color_B);
 }
 
 .faq_icon {
@@ -324,13 +328,13 @@ p , .txt{
     flex-shrink: 0;
 }
 
-.faq_question:hover .faq_icon {
+.faq_question:hover .faq_icon,
+.faq_item[open] .faq_icon {
     stroke: var(--color_B);
 }
 
 .faq_item[open] .faq_icon {
     transform: rotate(180deg);
-    stroke: var(--color_B);
 }
 
 .faq_answer {
@@ -354,6 +358,23 @@ p , .txt{
 
 .faq_answer_content .txt {
     color: var(--color_B_80);
+    line-height: 1.6em;
+}
+
+/* Feature Bullet List */
+.feature_list {
+    list-style: disc;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.feature_list li {
+    font-family: 'Andika', sans-serif;
+    color: var(--color_B_80);
+    font-size: 16px;
     line-height: 1.6em;
 }
 
@@ -416,6 +437,9 @@ p , .txt{
 
     .txt{
         font-size: 14px;}
+
+    .feature_list li {
+        font-size: 14px; }
 
     .desktop_break{
         display: none;}

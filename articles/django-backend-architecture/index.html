@@ -18,34 +18,8 @@
         <div class="section hero">
             <div class="header_text_group">
                 <h1 class="subtitle">Scalable Django Architecture: Best Practices for High-Performance Backends</h1>
-                <p class="big-txt">A comprehensive guide on structuring Django applications, optimizing ORM database queries, managing asynchronous task queues, and building robust RESTful APIs.</p>
+                <p class="txt">When scaling Django codebases, keeping business logic decoupled is critical. Rather than dumping models, views, and helpers into a single monolithic module, separate features into tightly scoped domain apps (e.g., `core`, `accounts`, `orders`, `analytics`).<br><br>Utilize custom management commands for automated data seeding, background migrations, and periodic maintenance tasks.</p>
             </div>
-
-            <div class="featured_work_button">
-                <a href="../../resources/django-template/" class="cta_button_alt cta_button txt">
-                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
-                    </svg>
-                    <span>Get Django Template</span>
-                </a>
-                <a href="../../articles/" class="cta_button txt">
-                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
-                    </svg>
-                    <span>Back to Articles</span>
-                </a>
-            </div>
-
-            <img src="../../images/7.webp" alt="Django Backend Architecture Diagram">
-        </div>
-
-        <!-- Section 1: Application Structure -->
-        <div class="section">
-            <div class="header_text_group">
-                <h2 class="subtitle">1. Domain-Driven App Separation</h2>
-                <p class="txt">When scaling Django codebases, keeping business logic decoupled is critical. Rather than dumping models, views, and helpers into a single monolithic module, separate features into tightly scoped domain apps (e.g., `core`, `accounts`, `orders`, `analytics`).</p>
-            </div>
-            <p class="txt">Utilize custom management commands for automated data seeding, background migrations, and periodic maintenance tasks.</p>
 
             <img src="../../images/8.webp" alt="Django Directory Structure Showcase">
         </div>
@@ -54,9 +28,8 @@
         <div class="section">
             <div class="header_text_group">
                 <h2 class="subtitle">2. Database & Query Optimization</h2>
-                <p class="txt">The Django ORM is powerful, but careless querying leads to the infamous N+1 problem. Always leverage `select_related()` for foreign key relations and `prefetch_related()` for many-to-many relationships.</p>
+                <p class="txt">The Django ORM is powerful, but careless querying leads to the infamous N+1 problem. Always leverage `select_related()` for foreign key relations and `prefetch_related()` for many-to-many relationships.<br><br>Additionally, wrap complex transactional operations inside `transaction.atomic()` blocks to safeguard data consistency under concurrent traffic loads.</p>
             </div>
-            <p class="txt">Additionally, wrap complex transactional operations inside `transaction.atomic()` blocks to safeguard data consistency under concurrent traffic loads.</p>
 
             <div class="featured_work_button">
                 <a href="../../resources/python-scripts/" class="cta_button_alt cta_button txt">

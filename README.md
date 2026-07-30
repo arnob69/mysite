@@ -31,8 +31,8 @@ The typography hierarchy uses Google Fonts loaded via CSS `@import`:
 | Selector / Class | Font Family | Desktop Size | Tablet (≤1024px) | Mobile (≤480px) | Line Height & Weight |
 |---|---|---|---|---|---|
 | **`h1` / `.title`** | `Inter` | `40px` | `32px` | `28px` | Line-height `1.08em`, Weight `500` |
-| **`h2` / `.subtitle`** | `Inter` | `28px` | `24px` | `20px` | Line-height `1.20em`, Weight `400` |
-| **`.big-txt`** | `Andika` | `18px` | `16px` | `16px` | Line-height `1.40em`, Weight `400` |
+| **`h2` / `.subtitle`** | `Inter` | `24px` | `24px` | `20px` | Line-height `1.20em`, Weight `400` |
+| **`.big-txt`** | `Andika` | `18px` | `16px` | `16px` | Line-height `1.40em`, Weight `300` |
 | **`p` / `.txt`** | `Andika` | `16px` | `14px` | `14px` | Line-height `1.60em`, Weight `400` |
 | **`a` / `button` / `.cta_button`** | `Andika` | `16px` | `14px` | `14px` | Line-height `1.00em`, Weight `400` |
 
@@ -70,6 +70,12 @@ The typography hierarchy uses Google Fonts loaded via CSS `@import`:
 - **Layout**: Borderless `space-between` flex row.
 - **Left Side**: Copyright label `© ARN03`.
 - **Right Side**: Essential external links (`GitHub`, `Figma`, `YouTube`) styled as `.cta_button` components with vector SVG arrow icons (`.arrow_icon`) and `target="_blank"`.
+
+---
+
+### 4. Call-to-Action Buttons & Button Wrappers (`.cta_button`, `.featured_work_button`)
+- **Flex Wrap Layout**: `.featured_work_button` containers use `display: flex; gap: 16px; flex-wrap: wrap;` ensuring action button pairs wrap cleanly without overflow on narrow screens.
+- **Interactive States**: `.cta_button` and `.cta_button_alt` elements pair label text with inline vector arrow icons (`.arrow_icon`) featuring `.35s ease` color and stroke transitions.
 
 ---
 
