@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Architecture — Case Study 3</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <div class="page">
+
+        <!-- Hero Section -->
+        <div class="section hero">
+            <div class="header_text_group">
+                <h1 class="subtitle">Scalable Design Systems: From Figma Libraries to Pure CSS Tokens</h1>
+                <p class="big-txt">How I built a reusable design system architecture using CSS custom properties, light-dark() primitives, and modular HTML components.</p>
+            </div>
+
+            <div class="featured_work_button">
+                <a href="../../contact/" class="cta_button_alt cta_button txt">
+                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                    </svg>
+                    <span>Read Case Study</span>
+                </a>
+                <a href="../../contact/" class="cta_button txt">
+                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                    </svg>
+                    <span>Collaborate</span>
+                </a>
+            </div>
+
+            <img src="../../images/9.webp" alt="Design System Tokens Preview">
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section">
+            <div class="header_text_group">
+                <h2 class="subtitle">1. Establishing Design Tokens in Figma</h2>
+                <p class="txt">Building scalable web applications starts with a disciplined design token structure. Color variables were organized into base layers, muted opacity variants, and interactive hover states.</p>
+            </div>
+            <p class="txt">This setup allowed zero-friction translation from Figma styles into pure CSS variables defined on `:root`.</p>
+
+            <img src="../../images/3.webp" alt="Design Tokens in Figma">
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <div class="header_text_group">
+                <h2 class="subtitle">2. Typography Pairing & Spatial Rhythm</h2>
+                <p class="txt">We selected Inter for headings and navigation controls to maintain crisp geometric alignment, combined with Andika for long-form narrative body paragraphs.</p>
+            </div>
+
+            <div class="featured_work_button">
+                <a href="../../contact/" class="cta_button_alt cta_button txt">
+                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                    </svg>
+                    <span>Read Case Study</span>
+                </a>
+                <a href="../../contact/" class="cta_button txt">
+                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                    </svg>
+                    <span>Collaborate</span>
+                </a>
+            </div>
+
+            <img src="../../images/1.png" alt="Typography and Spacing Hierarchy">
+        </div>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../../components.js" data-root="2"></script>
+</body>
+
+</html>
