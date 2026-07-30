@@ -34,19 +34,14 @@ a{
 ul{
     list-style: none; }
 
-/* Headings, Link text, Button text, Navigation */
-h1, h2, h3, h4, h5, h6, .title, .subtitle,
-a, button, input, select, textarea,
-.navigation_link, .mobile_nav_link, .cta_button, .cta_button_alt {
+/* Headings */
+h1, h2, h3, h4, h5, h6, .title, .subtitle {
     font-family: 'Inter', sans-serif; }
 
-/* Paragraph text */
-p, .txt, .big-txt {
+/* Paragraph text, Links, Buttons, Inputs & Navigation */
+p, .txt, .big-txt, a, button, input, select, textarea,
+.navigation_link, .mobile_nav_link, .mobile_sub_link, .footer_link, .cta_button, .cta_button_alt {
     font-family: 'Andika', sans-serif; }
-
-/* Ensure links and buttons override paragraph font if combined with .txt */
-a, button, .cta_button, .cta_button_alt, .navigation_link, .mobile_nav_link {
-    font-family: 'Inter', sans-serif; }
 
 .title{
     font-size: 40px;
@@ -258,7 +253,7 @@ p , .txt{
     border-bottom: 1px solid var(--color_B_60);
     border-radius: 0;
     color: var(--color_B);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Andika', sans-serif;
     font-size: 16px;
     outline: none;
     transition: border-color .35s ease;
@@ -572,7 +567,7 @@ p , .txt{
 
     .mobile_nav_link {
         font-size: 16px;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Andika', sans-serif;
         color: var(--color_B_60);
         text-decoration: none;
         transition: color .35s ease;
@@ -660,7 +655,7 @@ p , .txt{
 
     .mobile_sub_link {
         font-size: 16px;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Andika', sans-serif;
         color: var(--color_W_60);
         text-decoration: none;
         transition: color .35s ease;

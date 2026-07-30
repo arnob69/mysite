@@ -23,8 +23,8 @@ The site implements native CSS `light-dark()` primitives defined on `:root`, del
 ## ✒️ Typography System
 
 The typography hierarchy uses Google Fonts loaded via CSS `@import`:
-- **Headings, Navigation & Interactive Controls**: [`Inter`](https://fonts.google.com/specimen/Inter)
-- **Paragraphs & Body Text**: [`Andika`](https://fonts.google.com/specimen/Andika)
+- **Headings & Page Titles**: [`Inter`](https://fonts.google.com/specimen/Inter)
+- **Paragraphs, Body Text, Links (`<a>`), Buttons & Navigation**: [`Andika`](https://fonts.google.com/specimen/Andika)
 
 ### Type Scale Hierarchy
 
@@ -34,7 +34,7 @@ The typography hierarchy uses Google Fonts loaded via CSS `@import`:
 | **`h2` / `.subtitle`** | `Inter` | `28px` | `24px` | `20px` | Line-height `1.20em`, Weight `400` |
 | **`.big-txt`** | `Andika` | `18px` | `16px` | `16px` | Line-height `1.40em`, Weight `400` |
 | **`p` / `.txt`** | `Andika` | `16px` | `14px` | `14px` | Line-height `1.60em`, Weight `400` |
-| **`a` / `button` / `.cta_button`** | `Inter` | `16px` | `14px` | `14px` | Line-height `1.00em`, Weight `400` |
+| **`a` / `button` / `.cta_button`** | `Andika` | `16px` | `14px` | `14px` | Line-height `1.00em`, Weight `400` |
 
 ---
 
