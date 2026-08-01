@@ -13,7 +13,10 @@
 		--color_B_60: light-dark(#00000099, #ffffffcc);
 		--color_B_80: light-dark(#000000cc, #ffffffcc); 
         --color_W_60:light-dark( #ffffffcc ,#00000099 );
-        --radius: 4px;}
+        --radius: 4px;
+        --ease: cubic-bezier(.16,1,.3,1);
+        --motion: .7s;
+        --motion-fast: .45s;}
 
 html{
     scrollbar-width: none; /* Firefox */
@@ -93,7 +96,7 @@ p , .txt{
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    transition: .35s ease; }
+    transition: stroke .35s ease, transform .28s var(--ease); }
 
 .cta_button:hover .arrow_icon{
     stroke: var(--color_B); }
@@ -418,6 +421,167 @@ p , .txt{
 
 .mobile_header_bar {
     display: none; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Motion System
+   Three coordinated pieces, all driven by components.js:
+   1) Reveal — content fades/slides in piece by piece, in reading
+      order, the first time it's on screen (page load) and every time
+      it re-enters the viewport while scrolling; it un-reveals in
+      reverse (last piece first) when scrolled back past.
+   2) Letter wave — hover motion for buttons/links, letter by letter.
+   3) Page transitions — soft crossfade between pages via the View
+      Transitions API, progressively enhanced (falls back to an
+      instant, still-reload-free swap where unsupported).
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ─── 1) Reveal ─────────────────────────────────────────────────── */
+
+.reveal-item {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity var(--motion) var(--ease), transform var(--motion) var(--ease); }
+
+.reveal-item.is-revealed {
+    opacity: 1;
+    transform: translateY(0); }
+
+/* Exiting (reverse order — last piece hides first). Lower specificity
+   than the entrance rules below, so it only wins once .is-revealed
+   has been removed. */
+.reveal-item.reveal-out-0 { transition-delay: 0ms; }
+.reveal-item.reveal-out-1 { transition-delay: 90ms; }
+.reveal-item.reveal-out-2 { transition-delay: 180ms; }
+.reveal-item.reveal-out-3 { transition-delay: 270ms; }
+.reveal-item.reveal-out-4 { transition-delay: 360ms; }
+.reveal-item.reveal-out-5 { transition-delay: 450ms; }
+.reveal-item.reveal-out-6 { transition-delay: 540ms; }
+.reveal-item.reveal-out-7 { transition-delay: 630ms; }
+
+/* Entering (natural reading order, top to bottom). The extra
+   .is-revealed class makes these win over the exit rules while
+   revealed. */
+.reveal-item.is-revealed.reveal-in-0 { transition-delay: 0ms; }
+.reveal-item.is-revealed.reveal-in-1 { transition-delay: 90ms; }
+.reveal-item.is-revealed.reveal-in-2 { transition-delay: 180ms; }
+.reveal-item.is-revealed.reveal-in-3 { transition-delay: 270ms; }
+.reveal-item.is-revealed.reveal-in-4 { transition-delay: 360ms; }
+.reveal-item.is-revealed.reveal-in-5 { transition-delay: 450ms; }
+.reveal-item.is-revealed.reveal-in-6 { transition-delay: 540ms; }
+.reveal-item.is-revealed.reveal-in-7 { transition-delay: 630ms; }
+
+/* ─── 2) Letter wave (hover) ────────────────────────────────────── */
+/* components.js wraps each character of a .cta_button / .navigation_link
+   label in its own <span class="letter">, inside an aria-hidden wrapper
+   (the accessible name moves to an aria-label on the link itself). */
+
+@keyframes letter-reveal {
+    0%   { opacity: 0; transform: translateY(6px); }
+    50%  { opacity: 1; transform: translateY(-3px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Alternative: Clean Minimal Scale Pulse (No fade-in, letters stay visible and scale slightly) */
+@keyframes letter-pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* Alternative: Clean Minimal Fade-In (Subtle 2px lift, opacity only, no bounce) */
+@keyframes letter-fade-minimal {
+    0%   { opacity: 0; transform: translateY(2px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Alternative: Clean Minimal Scale Fade-in (Scale up from 0.8, opacity only, no bounce) */
+@keyframes letter-scale-fade {
+    0%   { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.letter-wave {
+    display: inline; }
+
+.letter-wave .letter {
+    display: inline-block; }
+
+/* On hover / viewport reveal: instantly hide all letters, then reveal each one sequentially */
+.cta_button.wave-active .letter-wave .letter,
+.navigation_link.wave-active .letter-wave .letter {
+    opacity: 0;
+    animation: letter-reveal .35s ease forwards; }
+
+
+.cta_button.wave-active .letter-wave .letter:nth-child(1)  { animation-delay: 0ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(2)  { animation-delay: 40ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(3)  { animation-delay: 80ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(4)  { animation-delay: 120ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(5)  { animation-delay: 160ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(6)  { animation-delay: 200ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(7)  { animation-delay: 240ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(8)  { animation-delay: 280ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(9)  { animation-delay: 320ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(10) { animation-delay: 360ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(11) { animation-delay: 400ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(12) { animation-delay: 440ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(13) { animation-delay: 480ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(14) { animation-delay: 520ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(15) { animation-delay: 560ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(16) { animation-delay: 600ms; }
+.cta_button.wave-active .letter-wave .letter:nth-child(n+17) { animation-delay: 600ms; }
+
+.navigation_link.wave-active .letter-wave .letter:nth-child(1)  { animation-delay: 0ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(2)  { animation-delay: 40ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(3)  { animation-delay: 80ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(4)  { animation-delay: 120ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(5)  { animation-delay: 160ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(6)  { animation-delay: 200ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(7)  { animation-delay: 240ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(8)  { animation-delay: 280ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(9)  { animation-delay: 320ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(10) { animation-delay: 360ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(11) { animation-delay: 400ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(12) { animation-delay: 440ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(13) { animation-delay: 480ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(14) { animation-delay: 520ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(15) { animation-delay: 560ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(16) { animation-delay: 600ms; }
+.navigation_link.wave-active .letter-wave .letter:nth-child(n+17) { animation-delay: 600ms; }
+
+/* ─── 3) Page transitions ───────────────────────────────────────── */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: var(--motion-fast);
+    animation-timing-function: var(--ease); }
+
+::view-transition-old(root) { animation-name: page-fade-out; }
+::view-transition-new(root) { animation-name: page-fade-in; }
+
+@keyframes page-fade-out { to   { opacity: 0; } }
+@keyframes page-fade-in  { from { opacity: 0; } }
+
+/* ─── Reduced motion ─────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+        transition: none; }
+
+    .letter-wave .letter {
+        animation: none !important; }
+
+    .cta_button.wave-active .letter-wave .letter,
+    .navigation_link.wave-active .letter-wave .letter {
+        animation: none !important;
+        opacity: 1 !important; }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none !important; }
+}
 
 /* ─── Mobile overlay (hidden by default) ───────────────────────── */
 

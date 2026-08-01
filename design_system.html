@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System — Arnob Baral</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom layout adjustments for Design System Cataloging */
+        .ds_header_spacing {
+            margin-bottom: 24px;
+        }
+
+        .ds_colors_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .ds_color_swatch {
+            height: 120px;
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+        }
+
+        .ds_color_info {
+            font-family: 'Andika', sans-serif;
+            font-size: 14px;
+        }
+
+        .ds_color_name {
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .ds_color_var {
+            color: var(--color_B_60);
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .ds_typography_table {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .ds_type_row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--color_B_60);
+        }
+
+        .ds_type_spec {
+            flex: 0.8;
+            font-family: 'Andika', sans-serif;
+            font-size: 13px;
+            color: var(--color_B_60);
+            line-height: 1.4;
+        }
+
+        .ds_type_preview {
+            flex: 1.2;
+        }
+
+        .ds_row_section {
+            display: flex !important;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .ds_info {
+            flex: 1.2;
+        }
+
+        .ds_preview {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .ds_component_preview {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .ds_component_item {
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--color_B_60);
+        }
+
+        /* 2-column component spec layout */
+        .ds_comp_row {
+            display: flex;
+            justify-content: space-between;
+            gap: 48px;
+        }
+
+        .ds_comp_spec {
+            flex: 0.8;
+        }
+
+        .ds_comp_live {
+            flex: 1.2;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .ds_type_row, .ds_row_section, .ds_comp_row {
+                flex-direction: column;
+                gap: 24px;
+                margin-top: 40px;
+            }
+        }
+
+        /* ─── Specific Custom Preview Classes for the 3 styles ─── */
+
+        /* 1. Staggered Bounce (letter-reveal) */
+        .preview-bounce.wave-active .letter-wave .letter {
+            opacity: 0;
+            animation: letter-reveal .35s ease forwards;
+        }
+
+        /* 2. Scale Pulse (letter-pulse) */
+        .preview-pulse.wave-active .letter-wave .letter {
+            opacity: 1;
+            animation: letter-pulse .3s ease-in-out forwards;
+        }
+
+        /* 3. Minimal Slide Fade-in (letter-fade-minimal) */
+        .preview-minimal.wave-active .letter-wave .letter {
+            opacity: 0;
+            animation: letter-fade-minimal .25s ease forwards;
+        }
+
+        /* 4. Minimal Scale Fade-in (letter-scale-fade) */
+        .preview-scale.wave-active .letter-wave .letter {
+            opacity: 0;
+            animation: letter-scale-fade .28s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <div class="page design-page">
+
+        <!-- 1. Intro Hero Section -->
+        <div class="section">
+            <h1 class="title">Design System</h1>
+            <p class="big-txt" style="margin-top: 16px; max-width: 800px;">
+                The foundational components, typography hierarchy, and adaptive primitives powering arnob69.com.
+            </p>
+        </div>
+
+        <!-- 2. Color Palette Primitives -->
+        <div class="section">
+            <h2 class="subtitle ds_header_spacing">Colors & Design Tokens</h2>
+            <p class="txt" style="max-width: 600px;">
+                Theme primitives dynamically responding to system dark/light preferences.
+            </p>
+            
+            <div class="ds_colors_grid">
+                <!-- Swatch 1 -->
+                <div>
+                    <div class="ds_color_swatch" style="background-color: var(--color_B);"></div>
+                    <div class="ds_color_info">
+                        <div class="ds_color_name">Base Dark</div>
+                        <div class="ds_color_var">--color_B</div>
+                    </div>
+                </div>
+                <!-- Swatch 2 -->
+                <div>
+                    <div class="ds_color_swatch" style="background-color: var(--color_W); box-shadow: inset 0 0 0 1px var(--color_B_60);"></div>
+                    <div class="ds_color_info">
+                        <div class="ds_color_name">Base Light</div>
+                        <div class="ds_color_var">--color_W</div>
+                    </div>
+                </div>
+                <!-- Swatch 3 -->
+                <div>
+                    <div class="ds_color_swatch" style="background-color: var(--color_B_80);"></div>
+                    <div class="ds_color_info">
+                        <div class="ds_color_name">Subtle Dark (80%)</div>
+                        <div class="ds_color_var">--color_B_80</div>
+                    </div>
+                </div>
+                <!-- Swatch 4 -->
+                <div>
+                    <div class="ds_color_swatch" style="background-color: var(--color_B_60);"></div>
+                    <div class="ds_color_info">
+                        <div class="ds_color_name">Muted Dark (60%)</div>
+                        <div class="ds_color_var">--color_B_60</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Typography Hierarchy -->
+        <div class="section">
+            <h2 class="subtitle ds_header_spacing">Typography Hierarchy</h2>
+            <p class="txt" style="max-width: 600px;">
+                Our fonts: <strong>Inter</strong> (Headings) and <strong>Andika</strong> (Body, Links, Buttons).
+            </p>
+            
+            <div class="ds_typography_table">
+                
+                <!-- Title Row -->
+                <div class="ds_type_row">
+                    <div class="ds_type_spec">
+                        <strong>h1 / .title</strong><br>
+                        Family: Inter<br>
+                        Size: 40px (Desktop)<br>
+                        Line Height: 1.08em<br>
+                        Weight: 500
+                    </div>
+                    <div class="ds_type_preview">
+                        <h1 class="title">Visual Showcase Title</h1>
+                    </div>
+                </div>
+
+                <!-- Subtitle Row -->
+                <div class="ds_type_row">
+                    <div class="ds_type_spec">
+                        <strong>h2 / .subtitle</strong><br>
+                        Family: Inter<br>
+                        Size: 24px (Desktop)<br>
+                        Line Height: 1.20em<br>
+                        Weight: 400
+                    </div>
+                    <div class="ds_type_preview">
+                        <h2 class="subtitle">Section Subtitle Header</h2>
+                    </div>
+                </div>
+
+                <!-- Big Text Row -->
+                <div class="ds_type_row">
+                    <div class="ds_type_spec">
+                        <strong>.big-txt</strong><br>
+                        Family: Andika<br>
+                        Size: 18px (Desktop)<br>
+                        Line Height: 1.40em<br>
+                        Weight: 300
+                    </div>
+                    <div class="ds_type_preview">
+                        <p class="big-txt">Slightly larger copy designed for hero introductory text sections.</p>
+                    </div>
+                </div>
+
+                <!-- Body Text Row -->
+                <div class="ds_type_row">
+                    <div class="ds_type_spec">
+                        <strong>p / .txt</strong><br>
+                        Family: Andika<br>
+                        Size: 16px (Desktop)<br>
+                        Line Height: 1.60em<br>
+                        Weight: 400
+                    </div>
+                    <div class="ds_type_preview">
+                        <p class="txt">Standard body copy optimized for maximum readability. Fluid across mobile, tablet, and desktop breakpoints.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 4. Layout & Grid Specifications -->
+        <div class="section">
+            <h2 class="subtitle ds_header_spacing">Layout & Grid Structure</h2>
+            <p class="txt" style="max-width: 600px; margin-bottom: 24px;">
+                Consistent alignment and container spacing variables declared across responsiveness.
+            </p>
+            
+            <div class="ds_typography_table" style="margin-top: 0;">
+                <div class="ds_type_row">
+                    <div class="ds_type_spec">
+                        <strong>Max Width</strong>
+                    </div>
+                    <div class="ds_type_preview">
+                        <p class="txt">1280px (Centered horizontally via <code>margin: 0 auto;</code>)</p>
+                    </div>
+                </div>
+                <div class="ds_type_row">
+                    <div class="ds_type_spec">
+                        <strong>Desktop Padding</strong>
+                    </div>
+                    <div class="ds_type_preview">
+                        <p class="txt">260px Top / 80px Bottom / 0px Side (alignment flows centered)</p>
+                    </div>
+                </div>
+                <div class="ds_type_row">
+                    <div class="ds_type_spec">
+                        <strong>Tablet Padding (≤1024px)</strong>
+                    </div>
+                    <div class="ds_type_preview">
+                        <p class="txt">220px Top / 60px Bottom / 32px Side padding</p>
+                    </div>
+                </div>
+                <div class="ds_type_row" style="border-bottom: none;">
+                    <div class="ds_type_spec">
+                        <strong>Mobile Padding (≤480px)</strong>
+                    </div>
+                    <div class="ds_type_preview">
+                        <p class="txt">180px Top / 40px Bottom / 16px Side padding</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Component Library -->
+        <div class="section">
+            <h2 class="subtitle ds_header_spacing">Component Library</h2>
+            <p class="txt" style="max-width: 600px;">
+                Visual representations of core interactive layout blocks.
+            </p>
+
+            <div class="ds_component_preview">
+
+                <!-- Card Component -->
+                <div class="ds_component_item">
+                    <div class="ds_comp_row">
+                        <div class="ds_comp_spec">
+                            <h3 class="big-txt" style="font-weight: 500;">Featured Card</h3>
+                            <p class="txt" style="margin-top: 8px; color: var(--color_B_60); font-size: 14px;">
+                                A clean, borderless container used on index.html grid layout to showcase projects. Uses <code>border-radius: 4px</code>.
+                            </p>
+                        </div>
+                        <div class="ds_comp_live">
+                            <div class="featured_card" style="max-width: 480px;">
+                                <img src="images/1.png" alt="Card Showcase Thumbnail" class="featured_card_thumbnail" loading="lazy">
+                                <div class="featured_work_button">
+                                    <a href="#" class="cta_button_alt cta_button txt">
+                                        <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                                        </svg>
+                                        <span>Read Case Study</span>
+                                    </a>
+                                    <a href="#" class="cta_button txt">
+                                        <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                                        </svg>
+                                        <span>Start a Project</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Inputs -->
+                <div class="ds_component_item">
+                    <div class="ds_comp_row">
+                        <div class="ds_comp_spec">
+                            <h3 class="big-txt" style="font-weight: 500;">Contact Form Inputs</h3>
+                            <p class="txt" style="margin-top: 8px; color: var(--color_B_60); font-size: 14px;">
+                                Minimal text fields and textareas styled with clean bottom borders and smooth focus transitions.
+                            </p>
+                        </div>
+                        <div class="ds_comp_live">
+                            <form class="contact_form" style="max-width: 480px;" onsubmit="event.preventDefault();">
+                                <input type="text" class="contact_input" placeholder="Name Preview">
+                                <textarea class="contact_input contact_textarea" placeholder="Your Message Preview" style="height: 100px;"></textarea>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Accordion -->
+                <div class="ds_component_item" style="border-bottom: none; padding-bottom: 0;">
+                    <div class="ds_comp_row">
+                        <div class="ds_comp_spec">
+                            <h3 class="big-txt" style="font-weight: 500;">FAQ Accordion</h3>
+                            <p class="txt" style="margin-top: 8px; color: var(--color_B_60); font-size: 14px;">
+                                Accessible disclosure lists utilizing native semantic elements, enhanced via JS to prevent multiple items opening simultaneously.
+                            </p>
+                        </div>
+                        <div class="ds_comp_live">
+                            <div class="faq_accordion" style="max-width: 480px;">
+                                <details class="faq_item" name="ds-faq-group" open>
+                                    <summary class="faq_question">
+                                        <span class="big-txt" style="font-size:16px;">Accordion Item 1</span>
+                                        <svg class="faq_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 9L12 15L18 9"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq_answer">
+                                        <div class="faq_answer_content">
+                                            <p class="txt">This demonstrates the active expanded accordion state containing descriptive body text.</p>
+                                        </div>
+                                    </div>
+                                </details>
+                                <details class="faq_item" name="ds-faq-group">
+                                    <summary class="faq_question">
+                                        <span class="big-txt" style="font-size:16px;">Accordion Item 2</span>
+                                        <svg class="faq_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 9L12 15L18 9"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq_answer">
+                                        <div class="faq_answer_content">
+                                            <p class="txt">This details the content inside the second collapsed element, sliding down when toggled.</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 6. Interaction & Motion Preview -->
+        <div class="section">
+            <h2 class="subtitle ds_header_spacing">Link & Button Motion Sandbox</h2>
+            <p class="txt" style="max-width: 600px;">
+                Hover over the action triggers on the right to preview all three animations.
+            </p>
+            
+            <div class="ds_row_section">
+                <div class="ds_info">
+                    <h3 class="big-txt" style="font-weight: 500;">1. Staggered Bounce</h3>
+                    <p class="txt" style="margin-top: 8px;">
+                        Fades in with a playful 6px vertical bounce. Creates a sequential, dynamic visual ripple.
+                    </p>
+                </div>
+                <div class="ds_preview">
+                    <a href="#" class="cta_button txt preview-bounce ds-interactive">
+                        <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                        </svg>
+                        <span>Let's Talk</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ds_row_section" style="margin-top: 40px;">
+                <div class="ds_info">
+                    <h3 class="big-txt" style="font-weight: 500;">2. Scale Pulse</h3>
+                    <p class="txt" style="margin-top: 8px;">
+                        Tactile and quiet. Letters remain fully visible and scale up slightly in sequence without fading.
+                    </p>
+                </div>
+                <div class="ds_preview">
+                    <a href="#" class="cta_button txt preview-pulse ds-interactive">
+                        <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                        </svg>
+                        <span>Let's Talk</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ds_row_section" style="margin-top: 40px;">
+                <div class="ds_info">
+                    <h3 class="big-txt" style="font-weight: 500;">3. Minimal Slide Fade-in</h3>
+                    <p class="txt" style="margin-top: 8px;">
+                        Extremely clean. Letters directly slide up 2px and fade in smoothly, with no vertical overshoot or bounce.
+                    </p>
+                </div>
+                <div class="ds_preview">
+                    <a href="#" class="cta_button txt preview-minimal ds-interactive">
+                        <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                        </svg>
+                        <span>Let's Talk</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Variation 4: Minimal Scale Fade-in -->
+            <div class="ds_row_section" style="margin-top: 40px;">
+                <div class="ds_info">
+                    <h3 class="big-txt" style="font-weight: 500;">4. Minimal Scale Fade-in</h3>
+                    <p class="txt" style="margin-top: 8px;">
+                        Quiet and smooth. Each character expands up from 80% to 100% size while fading in sequentially.
+                    </p>
+                </div>
+                <div class="ds_preview">
+                    <a href="#" class="cta_button txt preview-scale ds-interactive">
+                        <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                        </svg>
+                        <span>Let's Talk</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js" data-root="0"></script>
+    <script>
+        // Standalone letter splitter logic for the preview elements
+        function setupInteractiveWaves() {
+            document.querySelectorAll('.ds-interactive').forEach(el => {
+                const textEl = el.querySelector('span') || el;
+                const label = textEl.textContent.trim();
+                if (!label) return;
+
+                const wave = document.createElement('span');
+                wave.className = 'letter-wave';
+                wave.setAttribute('aria-hidden', 'true');
+
+                Array.from(label).forEach((ch, index) => {
+                    if (ch === ' ') {
+                        wave.appendChild(document.createTextNode(' '));
+                    } else {
+                        const span = document.createElement('span');
+                        span.className = 'letter';
+                        span.textContent = ch;
+                        span.style.animationDelay = `${index * 40}ms`;
+                        wave.appendChild(span);
+                    }
+                });
+
+                textEl.textContent = '';
+                textEl.appendChild(wave);
+
+                // Replay trigger on hover
+                el.addEventListener('mouseenter', () => {
+                    el.classList.remove('wave-active');
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            el.classList.add('wave-active');
+                        });
+                    });
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    el.classList.remove('wave-active');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', setupInteractiveWaves);
+    </script>
+</body>
+</html>
