@@ -9,13 +9,21 @@ const _scriptEl = document.currentScript ||
 const _depth = parseInt(_scriptEl?.dataset?.root ?? '0', 10);
 const ROOT   = '../'.repeat(_depth);   // "" when at site root
 
+/* Calculate the repository base path dynamically so hosting on subdirectories
+   (e.g., GitHub Pages: domain.com/ARN03-animated/) works seamlessly. */
+const _pathnameClean = window.location.pathname.replace(/\/index\.html$/, '/');
+const _pathSegments = _pathnameClean.split('/').filter(Boolean);
+const _baseSegments = _pathSegments.slice(0, _pathSegments.length - _depth);
+const BASE_PATH = '/' + _baseSegments.join('/') + (_baseSegments.length ? '/' : '');
+
 /* Given any pathname on the site, work out the same "../../" style
-   root prefix that a page living at that depth would use. Used to
-   re-root the header/footer's links after an in-place page
-   transition moves the browser to a different folder depth without
-   a full reload. */
+   root prefix that a page living at that depth would use relative to the BASE_PATH. */
 function computeRootForPath(pathname) {
-    let clean = pathname.replace(/index\.html$/, '');
+    let relativePath = pathname;
+    if (pathname.startsWith(BASE_PATH)) {
+        relativePath = pathname.slice(BASE_PATH.length);
+    }
+    let clean = relativePath.replace(/index\.html$/, '');
     clean = clean.replace(/^\/+|\/+$/g, '');
     if (!clean) return '';
     return '../'.repeat(clean.split('/').length);
