@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button &amp; Link Hover Effects — HTML/CSS Components — Arnob Baral</title>
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <div class="page">
+
+        <!-- Hero Section -->
+        <div class="section hero">
+            <div class="header_text_group">
+                <h1 class="subtitle">Button &amp; Link Text Hover Effects Resource Guide</h1>
+                <p class="big-txt">Complete technical guide and code snippets for building high-contrast, zero-layout-shift button and link hover states in modern web design systems.</p>
+            </div>
+
+            <div class="featured_work_button">
+                <a href="../../../design_system.html" class="cta_button_alt cta_button txt">
+                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                    </svg>
+                    <span>View Live Design System</span>
+                </a>
+                <a href="../" class="cta_button txt">
+                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                    </svg>
+                    <span>Back to CSS Components</span>
+                </a>
+            </div>
+
+            <img src="../../../images/3.webp" alt="Button Link Hover Effects Resource">
+        </div>
+
+        <!-- Section 1: Design System & Tokens -->
+        <div class="section">
+            <div class="header_text_group">
+                <h2 class="subtitle">1. Design System &amp; Interaction Tokens</h2>
+                <p class="txt">Interactive elements in our design system catalog rely on smooth CSS color transitions paired with coordinated SVG arrow stroke changes. Resting links use `--color_B_60`, smoothly shifting to `--color_B` when focused or hovered.</p>
+                <p class="txt">By avoiding arbitrary letter shifts or font-weight transformations on hover, buttons and links achieve crisp visual feedback with zero layout reflow across light and dark system themes.</p>
+            </div>
+
+            <img src="../../../images/1.png" alt="Interaction Tokens Architecture" loading="lazy" decoding="async">
+        </div>
+
+        <!-- Section 2: Semantic HTML Structure -->
+        <div class="section">
+            <div class="header_text_group">
+                <h2 class="subtitle">2. Semantic HTML Markup Structure</h2>
+                <p class="txt">To guarantee full screen-reader accessibility and responsive alignment, link and button text is paired with an inline vector arrow SVG icon.</p>
+            </div>
+
+            <pre class="code_block"><code>&lt;!-- Primary Action Button / Link --&gt;
+&lt;a href="contact/" class="cta_button txt"&gt;
+    &lt;svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;path d="M7 17L17 7M17 7H8M17 7V16"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span&gt;Let's Talk&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;!-- Secondary CTA Button Variant --&gt;
+&lt;a href="works/" class="cta_button_alt cta_button txt"&gt;
+    &lt;svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;path d="M7 17L17 7M17 7H8M17 7V16"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+    &lt;span&gt;View Case Studies&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+        </div>
+
+        <!-- Section 3: Production CSS Code Snippets -->
+        <div class="section">
+            <div class="header_text_group">
+                <h2 class="subtitle">3. Production CSS Code Snippets</h2>
+                <p class="txt">The CSS rule set coordinates typography color shifting and SVG stroke color transitions using a standard `.35s ease` timing function.</p>
+            </div>
+
+            <div class="code_box_16_9">
+                <div class="code_box_header">
+                    <span>style.css — CTA Hover Tokens</span>
+                </div>
+                <div class="code_box_body">
+                    <div class="code_content"><code>/* Base CTA Button Container */
+.cta_button {
+    background: var(--color_0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--color_B_60);
+    line-height: 1em;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    transition: color .35s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Integrated Arrow SVG Icon */
+.arrow_icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--color_B_60);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke .35s ease, transform .28s var(--ease);
+}
+
+/* Coordinated Hover States */
+.cta_button:hover {
+    color: var(--color_B);
+}
+
+.cta_button:hover .arrow_icon {
+    stroke: var(--color_B);
+}</code></div>
+                </div>
+            </div>
+
+            <img src="../../../images/8.webp" alt="Component Hover States Showcase" loading="lazy" decoding="async">
+        </div>
+
+        <!-- Section 4: Implementation Guidelines & Best Practices -->
+        <div class="section">
+            <div class="header_text_group">
+                <h2 class="subtitle">4. Implementation Guidelines &amp; Best Practices</h2>
+                <p class="txt">Key principles when deploying button and link hover effects across UI components:</p>
+                <ul class="feature_list">
+                    <li class="txt">Use `.cta_button` for standard interactive links and buttons requiring arrow directional feedback.</li>
+                    <li class="txt">Apply `.cta_button_alt` alongside `.cta_button` when a prominent dark resting state (`--color_B_80`) is required.</li>
+                    <li class="txt">Maintain consistent `.35s ease` transition timing across headers, footers, and cards to keep UI interactions harmonious.</li>
+                    <li class="txt">Rely on system token variables (`--color_B`, `--color_W_60`) to maintain dark mode contrast.</li>
+                </ul>
+            </div>
+
+            <div class="featured_work_button">
+                <a href="../../../design_system.html" class="cta_button_alt cta_button txt">
+                    <svg class="arrow_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H8M17 7V16"></path>
+                    </svg>
+                    <span>Explore Design System Catalog</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../../../components.js" data-root="3"></script>
+</body>
+
+</html>
