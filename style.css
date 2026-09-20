@@ -440,29 +440,130 @@ p , .txt{
 
 /* ─── FAQ Accordion ─────────────────────────────────────────────── */
 
-.faq_accordion {
+/* 16:9 fixed-ratio outer wrapper — same pattern as .code_box_16_9 */
+.faq_box_16_9 {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    background: var(--color_B);
+    border-radius: var(--radius);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .faq_box_16_9 {
+        aspect-ratio: 9 / 16;
+    }
+}
+
+/* Header bar — same style as .code_box_header */
+.faq_box_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    color: var(--color_W_60);
+    font-family: var(--font_family, 'Inter', sans-serif);
+    flex-shrink: 0;
+    letter-spacing: 0.2px;
+}
+
+/* "Let's Talk" button — same style as .code_copy_btn */
+.faq_lets_talk_btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--color_W_60);
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .35s ease;
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    font-family: var(--font_family, 'Inter', sans-serif);
+    text-decoration: none;
+}
+
+.faq_lets_talk_btn .faq_btn_icon {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke .35s ease, transform .28s var(--ease);
+}
+
+.faq_lets_talk_btn:hover {
+    color: var(--color_W);
+}
+
+.faq_lets_talk_btn:hover .faq_btn_icon {
+    transform: translate(2px, -2px);
+}
+
+/* Scrollable body — fills remaining height */
+.faq_box_body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.12) transparent;
+}
+
+.faq_box_body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.faq_box_body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.faq_box_body::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+}
+
+.faq_accordion {
+    --faq-marker-size: 18px;
+    --faq-gap: 10px;
+    --faq-pad-x: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .faq_accordion {
+        --faq-marker-size: 16px;
+        --faq-gap: 8px;
+        --faq-pad-x: 16px;
+    }
 }
 
 .faq_item {
     border: none;
-    border-bottom: 1px solid var(--color_B_60);
-    padding-bottom: 16px;
+    padding-bottom: 0;
     margin: 0;
+    background: var(--color_B);
 }
 
 .faq_question {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
     list-style: none;
-    padding: 8px 0;
+    padding: 18px var(--faq-pad-x);
     user-select: none;
-    gap: 16px;
+    gap: var(--faq-gap);
     width: 100%;
 }
 
@@ -472,34 +573,33 @@ p , .txt{
     content: "";
 }
 
+/* Square block indicator — 1:1 ratio matching the question text height */
+.faq_marker {
+    flex-shrink: 0;
+    width: var(--faq-marker-size);
+    height: var(--faq-marker-size);
+    margin-top: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    transition: background .35s ease;
+}
+
+.faq_question:hover .faq_marker,
+.faq_item[open] .faq_question .faq_marker {
+    background: var(--color_W);
+}
+
+/* question text — fills remaining space */
 .faq_question .big-txt {
-    color: var(--color_B_60);
+    flex: 1;
+    color: var(--color_W_60);
     transition: color .35s ease;
+    padding: 0;
 }
 
 .faq_question:hover .big-txt,
 .faq_item[open] .faq_question .big-txt {
-    color: var(--color_B);
-}
-
-.faq_icon {
-    width: 20px;
-    height: 20px;
-    stroke: var(--color_B_60);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: transform .35s ease, stroke .35s ease;
-    flex-shrink: 0;
-}
-
-.faq_question:hover .faq_icon,
-.faq_item[open] .faq_icon {
-    stroke: var(--color_B);
-}
-
-.faq_item[open] .faq_icon {
-    transform: rotate(180deg);
+    color: var(--color_W);
 }
 
 .faq_answer {
@@ -515,16 +615,50 @@ p , .txt{
     opacity: 1;
 }
 
+/* Answer text aligns precisely under the question text */
 .faq_answer_content {
     min-height: 0;
-    padding-top: 8px;
-    padding-bottom: 4px;
+    padding: 0 var(--faq-pad-x) 24px calc(var(--faq-pad-x) + var(--faq-marker-size) + var(--faq-gap));
 }
 
 .faq_answer_content .txt {
-    color: var(--color_B_80);
+    color: var(--color_W_60);
     line-height: 1.6em;
 }
+
+/* ─── FAQ Accordion — Light / Reversed variant ──────────────────── */
+
+.faq_accordion_light .faq_item {
+    background: transparent;
+    border-bottom: 1px solid var(--color_B_60);
+}
+
+.faq_accordion_light .faq_item:last-child {
+    border-bottom: none;
+}
+
+.faq_accordion_light .faq_question .big-txt {
+    color: var(--color_B_60);
+}
+
+.faq_accordion_light .faq_question:hover .big-txt,
+.faq_accordion_light .faq_item[open] .faq_question .big-txt {
+    color: var(--color_B);
+}
+
+.faq_accordion_light .faq_icon {
+    stroke: var(--color_B_60);
+}
+
+.faq_accordion_light .faq_question:hover .faq_icon,
+.faq_accordion_light .faq_item[open] .faq_icon {
+    stroke: var(--color_B);
+}
+
+.faq_accordion_light .faq_answer_content .txt {
+    color: var(--color_B_80);
+}
+
 
 /* Feature Bullet List */
 .feature_list {

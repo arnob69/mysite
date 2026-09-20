@@ -377,43 +377,71 @@
                     </div>
                 </div>
 
-                <!-- FAQ Accordion -->
+                <!-- FAQ Accordion Component -->
                 <div class="ds_component_item" style="border-bottom: none; padding-bottom: 0;">
                     <div class="ds_comp_row">
                         <div class="ds_comp_spec">
-                            <h3 class="big-txt" style="font-weight: 500;">FAQ Accordion</h3>
-                            <p class="txt" style="margin-top: 8px; color: var(--color_B_60); font-size: 14px;">
-                                Accessible disclosure lists utilizing native semantic elements, enhanced via JS to prevent multiple items opening simultaneously.
+                            <h3 class="big-txt" style="font-weight: 500;">FAQ 16:9 / 9:16 Interactive Accordion</h3>
+                            <p class="txt" style="margin-top: 8px; color: var(--color_B_60); font-size: 14px; line-height: 1.6;">
+                                High-contrast, minimal dark container housing disclosure list items with custom 1:1 square indicators, hover-trigger expansion, single-open constraints, and strict vertical text alignment.
                             </p>
+                            <div style="margin-top: 16px; font-size: 13px; color: var(--color_B_60); line-height: 1.6; font-family: var(--font_family);">
+                                <div style="margin-bottom: 6px;">• <strong>Aspect Ratio:</strong> 16:9 on desktop (<code>.faq_box_16_9</code>) / 9:16 on mobile (<code>≤768px</code>)</div>
+                                <div style="margin-bottom: 6px;">• <strong>Square Indicator:</strong> 1:1 ratio (<code>18px × 18px</code>), matching question font height</div>
+                                <div style="margin-bottom: 6px;">• <strong>Active States:</strong> Inactive: <code>rgba(255,255,255,0.2)</code> / Hover &amp; Open: <code>var(--color_W)</code></div>
+                                <div style="margin-bottom: 6px;">• <strong>Hover Behavior:</strong> <code>mouseenter</code> automatically activates &amp; expands item</div>
+                                <div style="margin-bottom: 6px;">• <strong>Text Alignment:</strong> Answer padding matches question text start (<code>58px</code> offset)</div>
+                                <div>• <strong>Single Open:</strong> <code>name="faq-group"</code> + JS toggle sync</div>
+                            </div>
                         </div>
                         <div class="ds_comp_live">
-                            <div class="faq_accordion" style="max-width: 480px;">
-                                <details class="faq_item" name="ds-faq-group" open>
-                                    <summary class="faq_question">
-                                        <span class="big-txt" style="font-size:16px;">Accordion Item 1</span>
-                                        <svg class="faq_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 9L12 15L18 9"></path>
+                            <div class="faq_box_16_9" style="max-width: 100%;">
+                                <div class="faq_box_header">
+                                    <span>Frequently Asked Questions</span>
+                                    <a href="lets-talk/" class="faq_lets_talk_btn">
+                                        <svg class="faq_btn_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7M17 7H8M17 7V16"></path>
                                         </svg>
-                                    </summary>
-                                    <div class="faq_answer">
-                                        <div class="faq_answer_content">
-                                            <p class="txt">This demonstrates the active expanded accordion state containing descriptive body text.</p>
-                                        </div>
+                                        Let's Talk
+                                    </a>
+                                </div>
+                                <div class="faq_box_body">
+                                    <div class="faq_accordion">
+                                        <details class="faq_item" name="ds-faq-group" open>
+                                            <summary class="faq_question">
+                                                <span class="faq_marker"></span>
+                                                <span class="big-txt">What services do you offer?</span>
+                                            </summary>
+                                            <div class="faq_answer">
+                                                <div class="faq_answer_content">
+                                                    <p class="txt">I provide end-to-end digital product design and development services, including minimalist portfolio websites, custom Django web applications, and UI/UX design systems in Figma.</p>
+                                                </div>
+                                            </div>
+                                        </details>
+                                        <details class="faq_item" name="ds-faq-group">
+                                            <summary class="faq_question">
+                                                <span class="faq_marker"></span>
+                                                <span class="big-txt">What technologies do you use?</span>
+                                            </summary>
+                                            <div class="faq_answer">
+                                                <div class="faq_answer_content">
+                                                    <p class="txt">I build clean frontends using vanilla HTML5 and CSS3 (with CSS variable design tokens for light/dark mode), coupled with Python and Django REST APIs for backend systems.</p>
+                                                </div>
+                                            </div>
+                                        </details>
+                                        <details class="faq_item" name="ds-faq-group">
+                                            <summary class="faq_question">
+                                                <span class="faq_marker"></span>
+                                                <span class="big-txt">How does hover activation work?</span>
+                                            </summary>
+                                            <div class="faq_answer">
+                                                <div class="faq_answer_content">
+                                                    <p class="txt">Hovering over any question automatically expands it, turns the 1:1 square indicator bright white, and closes previously opened items smoothly.</p>
+                                                </div>
+                                            </div>
+                                        </details>
                                     </div>
-                                </details>
-                                <details class="faq_item" name="ds-faq-group">
-                                    <summary class="faq_question">
-                                        <span class="big-txt" style="font-size:16px;">Accordion Item 2</span>
-                                        <svg class="faq_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 9L12 15L18 9"></path>
-                                        </svg>
-                                    </summary>
-                                    <div class="faq_answer">
-                                        <div class="faq_answer_content">
-                                            <p class="txt">This details the content inside the second collapsed element, sliding down when toggled.</p>
-                                        </div>
-                                    </div>
-                                </details>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -497,7 +525,9 @@
                     </a>
                 </div>
             </div>
-        <!-- 6. Code Box Primitives (16:9 Aspect Ratio) -->
+        </div>
+
+        <!-- 7. Code Box Primitives (16:9 Aspect Ratio) -->
         <div class="section">
             <h2 class="subtitle ds_header_spacing">16:9 Aspect Ratio Code Snippet Box</h2>
             <p class="txt" style="max-width: 600px;">

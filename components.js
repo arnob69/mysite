@@ -316,19 +316,33 @@ function initLetterWave(scope) {
    working after an in-place page transition swaps that page's content
    in — injected <script> tags don't execute on their own. */
 function initFaqAccordion(scope) {
-    const accordion = scope.nodeType === Node.ELEMENT_NODE && scope.matches('.faq_accordion')
-        ? scope
-        : scope.querySelector('.faq_accordion');
-    if (!accordion || accordion.dataset.faqSetup) return;
-    accordion.dataset.faqSetup = 'true';
+    const accordions = [];
+    if (scope.nodeType === Node.ELEMENT_NODE && scope.matches('.faq_accordion')) {
+        accordions.push(scope);
+    }
+    if (scope.querySelectorAll) {
+        scope.querySelectorAll('.faq_accordion').forEach(el => accordions.push(el));
+    }
 
-    accordion.querySelectorAll('details').forEach(detail => {
-        detail.addEventListener('toggle', () => {
-            if (detail.open) {
-                accordion.querySelectorAll('details').forEach(other => {
-                    if (other !== detail) other.open = false;
-                });
-            }
+    accordions.forEach(accordion => {
+        if (accordion.dataset.faqSetup) return;
+        accordion.dataset.faqSetup = 'true';
+
+        accordion.querySelectorAll('details').forEach(detail => {
+            detail.addEventListener('toggle', () => {
+                if (detail.open) {
+                    accordion.querySelectorAll('details').forEach(other => {
+                        if (other !== detail) other.open = false;
+                    });
+                }
+            });
+
+            /* Open/activate on hover */
+            detail.addEventListener('mouseenter', () => {
+                if (!detail.open) {
+                    detail.open = true;
+                }
+            });
         });
     });
 }
